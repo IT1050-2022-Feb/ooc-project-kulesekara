@@ -130,10 +130,10 @@ Payment::Payment(string pPayment_Id, float pPayment_amount){
 
 int main() {
 
-	Customer* C1 = new Customer("Amali Warnasooriya", "0761232312",
-	"nipuni.s@gmail.com", 30, "Negombo, Jaela ", "CUS01", 01, 55);
+	Customer* C1 = new Customer("kamali werasooriya", "0770154044",
+	"nishani.a@gmail.com", 30, "colombo, wattala ", "CUS01", 01, 55);
 	Payment* P = new Payment("PAY01", 1500);	
-	Booking* B1 = new Booking("BK01", "Kandana", "2022/05/24", C1);
+	Booking* B1 = new Booking("BK01", "negombo", "2022/05/24", C1);
   
 
   B1->displayBooking();//Booking::displayBooking() called
