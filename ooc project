@@ -1,0 +1,147 @@
+#include<iostream>
+#include<string>
+using namespace std;
+
+//class declaration
+
+class User;
+class Customer;
+class Payment;
+class Booking;
+
+//base class(use inheritance)
+class User {
+	protected:
+		string name;
+		string phoneNo;
+		string email;
+		int age;
+		string address;
+	public:
+		User();//default constructor
+		User(string pname, string pphoneNo, string pemail, int page, string
+		paddress);//overloaded constructor
+		void userregister();
+		~User() {}//destructor called
+};
+
+
+User::User() {}
+
+User::User(string pname, string pphoneNo, string pemail, int page, string paddress) {
+		name = pname;
+		phoneNo = pphoneNo;
+		email = pemail;
+		age = page;
+		address = paddress;
+}
+void User::userregister() {}
+
+
+
+
+class Customer :public User {
+	private:
+		Booking* booking;		
+		string CustomerId;
+
+	public:
+		Customer();//default constructor
+		Customer(string pname, string pphoneNo, string pemail, int page, string paddress,
+		string pCustomerId, int serno, int feedno);//overloaded constructor
+		
+		//void addbooking(Booking* cusb);
+		
+		
+		~Customer() {}//destructor called
+};
+
+
+Customer::Customer() {}
+
+Customer::Customer(string pname, string pphoneNo, string pemail, int page, string
+paddress, string pCustomerId, int serno1, int feedno) :User(pname, pphoneNo, pemail,
+page, paddress) {
+
+		
+		CustomerId = pCustomerId;
+}
+
+class Booking {
+	private:
+		Customer* cus;		
+		string bookingID;
+		string branchName;
+		string date;
+	public:
+		Booking();//default constructor
+		Booking(string pbookingID, string pbranchName, string pdate, Customer* pcustomer
+		);//overloaded constructor
+		
+		void displayBooking() {
+		
+		
+		cout << endl <<"****** ||Reservation|| ******" <<
+		endl << endl;
+		cout << "Reservation ID: " << bookingID << endl;
+		cout << "Branch Name: " << branchName << endl;
+		cout << "Appointment Date: " << date << endl << endl;
+}
+~Booking() {}//destructor called
+
+};
+class Customer;
+		Booking::Booking() {}
+		Booking::Booking(string pbookingID, string pbranchName, string pdate, Customer*
+		pcustomer) {
+		bookingID = pbookingID;
+		branchName = pbranchName;
+		date = pdate;
+		cus = pcustomer;
+		
+}
+
+
+
+
+class Payment {
+	private:
+		
+		
+		string Payment_Id;
+		double Payment_amount;
+	public:
+		Payment();//default constructor
+		Payment(string pPayment_Id, float pPayment_amount);//overloaded constructor
+		void displaypayment() {
+			cout << endl << "****** ||Payment|| ******" <<
+			endl << endl;
+			cout << "Payment ID: " << Payment_Id << endl;
+			cout << "Payable Amount: " << Payment_amount << endl << endl;
+		}
+		~Payment() {}//destructor called
+
+};
+Payment::Payment(string pPayment_Id, float pPayment_amount){
+		Payment_Id = pPayment_Id;
+		Payment_amount = pPayment_amount;		
+	
+}
+
+int main() {
+
+	Customer* C1 = new Customer("Amali Warnasooriya", "0761232312",
+	"nipuni.s@gmail.com", 30, "Negombo, Jaela ", "CUS01", 01, 55);
+	Payment* P = new Payment("PAY01", 1500);	
+	Booking* B1 = new Booking("BK01", "Kandana", "2022/05/24", C1);
+  
+
+  B1->displayBooking();//Booking::displayBooking() called
+	P->displaypayment();//Payment::displaypayment() called
+	
+	delete P;
+	delete B1;
+	
+return 0;
+
+}
